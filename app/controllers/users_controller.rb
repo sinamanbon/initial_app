@@ -11,7 +11,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params) #extremely dangerous - throws error when working with Rails 4.0
     if @user.save
-      flash[:success] = "Welcome to the Sample App!"
+      flash[:success] = "Thank you for signing up!"
       redirect_to @user
     else
       render 'new'
