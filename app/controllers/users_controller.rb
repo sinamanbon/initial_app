@@ -11,7 +11,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params) #extremely dangerous - throws error when working with Rails 4.0
     if @user.save
-      #successful save
+      redirect_to @user
     else
       render 'new'
     end
@@ -22,5 +22,4 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:name, :email, :password, :password_confirmation)
   end
-
 end
