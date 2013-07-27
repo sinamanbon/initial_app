@@ -51,4 +51,8 @@ describe "User pages" do
       it { should have_content('error') }
     end
   end
+
+  it {should respond_to (:password_confirmation)}
+  it {should respond_to (:rememmber_token)}
+  it {should respond_to (:authenticate)}
 end
