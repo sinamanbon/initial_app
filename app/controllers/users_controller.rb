@@ -19,6 +19,10 @@ class UsersController < ApplicationController
     end
   end
 
+  def edit
+    @user = User.find(params[:id])
+  end
+
   private
   # new way to permit only listed attributes for user params
   def user_params
