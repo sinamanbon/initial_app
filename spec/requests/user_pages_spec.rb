@@ -12,6 +12,13 @@ describe "User pages" do
     it { should have_title (user.name) }
   end
 
+  describe "signin page" do
+    before { visit signin_path }
+
+    it { should have_content('Sign in') }
+    it { should have_title('Sign in') }
+  end
+
   describe "signup page" do
     before { visit signup_path }
 
