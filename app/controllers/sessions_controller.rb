@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
     if user && user.authenticate(params[:session][:password])
       #sign the user in and redirect to the user's show page
       sign_in(user)
-      redirect_to user
+      redirect_back_or user
     else
       #creates and error message and re-renders the signin form.
       #user flash.now to make contents dissapear as soon as there is another request

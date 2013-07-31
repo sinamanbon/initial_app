@@ -28,4 +28,17 @@ module SessionsHelper
     self.current_user = nil
     cookies.delete(:remember_token)
   end
+
+  # redirects back to intended page before redirection to sign in page from Users#correct_user
+  def redirect_back_or(default)
+    redirect_to(session[:return_to] || default)
+    session.delete(:redirect_to)
+  end
+
+  # store location for redirection
+  def store_location
+    # session is like cookies except it automatically expires upon browser closing
+    session[:return_to] = request.url
+  end
+
 end
