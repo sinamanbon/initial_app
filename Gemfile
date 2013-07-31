@@ -9,6 +9,10 @@ gem 'bootstrap-sass', '2.3.2.0'
 gem 'bcrypt-ruby', '3.0.1'
 #making sample user with semi-realistic names/email
 gem 'faker', '1.1.2'
+#pagination
+gem 'will_paginate', '3.0.4'
+#bootstraped pagination
+gem 'bootstrap-will_paginate', '0.0.9'
 
 group :development, :test do
   gem 'sqlite3', '1.3.7'
