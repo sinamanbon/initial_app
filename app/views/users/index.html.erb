@@ -4,12 +4,10 @@
 <%= will_paginate %>
 
 <ul class="users">
-  <% @users.each do |user| %>
-    <li>
-      <%= gravatar_for user, size: 52 %>
-      <%= link_to user.name, user %>
-    </li>
-  <% end %>
+  <!--when calling render @users rails knows its a collection of users -->
+  <!--it will iterate through each of them and render with the _user.html.erb-->
+  <!--because render is not passing a string but a variable users, it will automatically look for _user.html.erb-->
+  <%= render @users %>
 </ul>
 
 <%= will_paginate %>
