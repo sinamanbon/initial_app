@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  has_many :microposts
   has_secure_password
   #forcing email to be downcased
   before_save { self.email = email.downcase}
