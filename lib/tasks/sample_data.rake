@@ -16,6 +16,7 @@ namespace :db do
                    password_confirmation: password)
     end
 
+    #generating random 50 'microposts' for first six user using Faker
     users = User.all(limit: 6)
     50.times do
       content = Faker::Lorem.sentence(5)
