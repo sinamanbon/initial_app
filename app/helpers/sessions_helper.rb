@@ -24,6 +24,13 @@ module SessionsHelper
     !current_user.nil?
   end
 
+  def signed_in_user
+    unless signed_in?
+      store_location
+      redirect_to signin_url, notice: "Please sign in"
+    end
+  end
+
   def sign_out
     self.current_user = nil
     cookies.delete(:remember_token)
@@ -35,7 +42,7 @@ module SessionsHelper
     session.delete(:redirect_to)
   end
 
-  # store location for redirection
+  # stores location for redirection
   def store_location
     # session is like cookies except it automatically expires upon browser closing
     session[:return_to] = request.url
