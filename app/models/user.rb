@@ -1,9 +1,18 @@
 class User < ActiveRecord::Base
   #dependent: :destroy allows microposts to be deleted if user itself is destroyed
   has_many :microposts, dependent: :destroy
+
   has_many :relationships, foreign_key: "follower_id", dependent: :destroy
+
   #rails allowing to override default of followed to followed_users using source
   has_many :followed_users, through: :relationships, source: :followed
+
+  #instead of making another db table for reverse relationships, we will use followed_id
+  #as the primary key to go backwards
+  has_many :reverse_relationships,  foreign_key:  "followed_id",
+                                    class_name:   "Relationship",
+                                    dependent:    :destroy
+  has_many :followers, through: :reverse_relationships, source: :follower
 
   has_secure_password
   #forcing email to be downcased
@@ -51,7 +60,7 @@ class User < ActiveRecord::Base
 
   #removes the following for the user with other user
   def unfollow!(other_user)
-    relationships.find_by(followed_id: other_users.id).destroy!
+    relationships.find_by(followed_id: other_user.id).destroy!
   end
 
   private
