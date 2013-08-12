@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   #dependent: :destroy allows microposts to be deleted if user itself is destroyed
   has_many :microposts, dependent: :destroy
+  has_many :relationships, foreign_key: "follower_id", dependent: :destroy
   has_secure_password
   #forcing email to be downcased
   before_save { self.email = email.downcase}
