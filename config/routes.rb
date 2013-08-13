@@ -1,5 +1,12 @@
 SampleApp::Application.routes.draw do
-  resources :users
+  resources :users do
+    #members vs collection - members require :id and collections don't
+    #ie: users/:id/following vs users/following
+    #to call - /users/1/following -> following_user_path(1)
+    member do
+      get :following, :followers
+    end
+  end
   resources :sessions, only: [:new, :create, :destroy]
   resources :microposts, only:[:create, :destroy]
   root  'static_pages#home'
